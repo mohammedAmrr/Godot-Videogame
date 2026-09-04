@@ -64,12 +64,12 @@ mesh = SubResource("BoxMesh_rl2g8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cube/StaticBody3D" unique_id=592005143]
 shape = SubResource("ConvexPolygonShape3D_4wyf3")
 
-[node name="key" type="Node3D" parent="." unique_id=54748422]
+[node name="golden_key" type="Node3D" parent="." unique_id=54748422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.471, 1.5451651, 0)
 
-[node name="Sketchfab_Scene" parent="key" unique_id=2057292805 instance=ExtResource("3_k0juu")]
+[node name="Sketchfab_Scene" parent="golden_key" unique_id=2057292805 instance=ExtResource("3_k0juu")]
 transform = Transform3D(0.17499478, -0.00081690477, 0.0010767493, -0.0010750565, 0.00036463456, 0.17499632, -0.00081913173, -0.17499772, 0.00035960533, 0, 0, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="key" unique_id=218834778]
+[node name="OmniLight3D" type="OmniLight3D" parent="golden_key" unique_id=218834778]
 light_color = Color(0.8119461, 0.7613367, 1.540184e-06, 1)
 omni_range = 2.2219164

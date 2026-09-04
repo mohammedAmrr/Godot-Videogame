@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bf5qbjusi370i"]
+
+[ext_resource type="Texture2D" uid="uid://b72fsb2peuphx" path="res://3D models/keys/old_gold_key_0.jpg" id="1_g0ef3"]
+[ext_resource type="PackedScene" uid="uid://duiwmsxrbtsxl" path="res://3D models/keys/old_gold_key.glb" id="2_0t8gx"]
+[ext_resource type="Script" uid="uid://c5ic4b5v6bh7u" path="res://scripts/ItemData.gd" id="3_f36hk"]
+
+[resource]
+script = ExtResource("3_f36hk")
+item_name = "golden_key"
+mesh_scene = ExtResource("2_0t8gx")
+metadata/_custom_type_script = "uid://c5ic4b5v6bh7u"
