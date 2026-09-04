@@ -1,9 +1,8 @@
 extends CharacterBody3D
 
-
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
-const SENS = 0.005 
+const SENS = 0.005
 const JUMP_VELOCITY = 4.5
 #bob vars
 const BOB_FREQ = 2.0
@@ -12,23 +11,67 @@ var tbob = 0.0
 
 @onready var head = $head
 @onready var cam = $head/Camera3D
+@onready var interaction_ray = $head/Camera3D/InteractionRay
+@onready var grab_position = $head/Camera3D/GrabPosition
 
 var speed
+var grabbed_object: RigidBody3D = null
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+
 func  _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENS)
 		cam.rotate_x(-event.relative.y * SENS)
 		cam.rotation.x = clamp(cam.rotation.x, deg_to_rad(-55), deg_to_rad(65))
-	else:
-		pass
+
+	if event.is_action_pressed("interact"):
+		if grabbed_object:
+			# If we are already holding something, check if we can collect it
+			if grabbed_object.has_method("collect"):
+				grabbed_object.collect()
+				grabbed_object = null
+		else:
+			# Try to grab something
+			if interaction_ray.is_colliding():
+				var collider = interaction_ray.get_collider()
+				if collider is RigidBody3D and collider.is_in_group("interactable"):
+					grab_object(collider)
+
+	if event.is_action_released("interact"):
+		if grabbed_object:
+			throw_object()
+
+	if event.is_action_pressed("drop"):
+		if Inventory.selected_slot == null:
+			return
+		elif Inventory.selected_slot != -1:
+			drop_item()
+
+func grab_object(object: RigidBody3D):
+	grabbed_object = object
+	grabbed_object.freeze = true
+
+func throw_object():
+	if not grabbed_object:
+		return
+
+	grabbed_object.freeze = false
+	var throw_force = -cam.global_transform.basis.z * 10.0
+	grabbed_object.apply_central_impulse(throw_force)
+	grabbed_object = null
+
+func drop_item():
+	var item_data = Inventory.drop_item(Inventory.selected_slot)
+	if item_data:
+		var item_instance = item_data.mesh_scene.instantiate()
+		get_parent().add_child(item_instance)
+		item_instance.global_position = cam.global_position + (-cam.global_transform.basis.z * 1.5)
+		if item_instance is RigidBody3D:
+			item_instance.apply_central_impulse(-cam.global_transform.basis.z * 2.0)
 
 func _physics_process(delta: float) -> void:
-	
-	
 	if Input.is_action_pressed("sprint"):
 		speed = SPRINT_SPEED
 	else:
@@ -42,7 +85,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("a", "d", "w", "s")
 	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -51,12 +93,17 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
-	
+
+	# Handle grabbed object position
+	if grabbed_object:
+		grabbed_object.global_transform = grabbed_object.global_transform.interpolate_with(grab_position.global_transform, delta * 20.0)
+
 	#head bob
 	tbob += delta * velocity.length() * float(is_on_floor())
 	cam.transform.origin = headbob(tbob)
-	
+
 	move_and_slide()
+
 func headbob(time) ->Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP

@@ -18,8 +18,15 @@ mesh = SubResource("CapsuleMesh_u8vuu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5587112, 0)
 
 [node name="Camera3D" type="Camera3D" parent="head" unique_id=1715471026]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54249954, -0.38228774)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54249954, -0.38228798)
 current = true
+
+[node name="GrabPosition" type="Marker3D" parent="head/Camera3D" unique_id=123456782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24512029, -3.047379)
+
+[node name="InteractionRay" type="RayCast3D" parent="head/Camera3D" unique_id=123456781]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.068421245, 0.38228774)
+target_position = Vector3(0, 0, -3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1880076268]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.083917975, 0)
