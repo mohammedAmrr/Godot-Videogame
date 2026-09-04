@@ -22,7 +22,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54249954, -0.38228798)
 current = true
 
 [node name="GrabPosition" type="Marker3D" parent="head/Camera3D" unique_id=123456782]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24512029, -3.047379)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2297902, -0.24512029, -1.9479411)
 
 [node name="InteractionRay" type="RayCast3D" parent="head/Camera3D" unique_id=123456781]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.068421245, 0.38228774)
