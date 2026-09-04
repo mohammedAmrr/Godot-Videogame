@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Inventory="*uid://c8kibs6wb3vqn"
+Inventory="*uid://di0u7arhy67ow"
 
 [display]
 
