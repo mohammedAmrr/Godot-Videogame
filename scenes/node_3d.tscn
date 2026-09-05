@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://qqjtt0amy4w8"]
+
+[ext_resource type="Texture2D" uid="uid://dx8rco2diuw2u" path="res://textures/floor/TerrazzoSlab018_ROUGHNESS_1K_METALNESS.png" id="1_oqwcg"]
+[ext_resource type="Texture2D" uid="uid://cgcbag75vxq08" path="res://textures/walls/TilesTerracottaBeigeSquareStacked001_COL_1K.jpg" id="2_a6664"]
+[ext_resource type="PackedScene" uid="uid://brxtka7pwihax" path="res://3D models/furniture/victorian_bed.glb" id="3_10v3s"]
+[ext_resource type="PackedScene" uid="uid://b227gv7j12i04" path="res://3D models/furniture/carpet.glb" id="4_cptob"]
+[ext_resource type="PackedScene" uid="uid://crsyqc2ot5xbi" path="res://scenes/player.tscn" id="5_b2yaj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fi5v2"]
+albedo_texture = ExtResource("1_oqwcg")
+
+[sub_resource type="BoxMesh" id="BoxMesh_51fql"]
+size = Vector3(22, 0.001, 22)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mq8aq"]
+size = Vector3(22, 0.3, 22)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mq8aq"]
+albedo_texture = ExtResource("2_a6664")
+albedo_texture_force_srgb = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51fql"]
+albedo_texture = ExtResource("2_a6664")
+albedo_texture_force_srgb = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_mq8aq"]
+size = Vector3(22, 10, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_51fql"]
+size = Vector3(22, 10, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kfvix"]
+albedo_texture = ExtResource("2_a6664")
+albedo_texture_force_srgb = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kfvix"]
+size = Vector3(22, 10, 0.3)
+
+[node name="Node3D" type="Node3D" unique_id=1168981807]
+
+[node name="ceiling" type="MeshInstance3D" parent="." unique_id=458139261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.101364136, 9.86066, -0.021761417)
+material_override = SubResource("StandardMaterial3D_fi5v2")
+mesh = SubResource("BoxMesh_51fql")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ceiling" unique_id=1817528267]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ceiling/StaticBody3D" unique_id=1404132397]
+shape = SubResource("BoxShape3D_mq8aq")
+
+[node name="floor2" type="MeshInstance3D" parent="." unique_id=1390205187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07795286, -0.078757405, -0.1559987)
+material_override = SubResource("StandardMaterial3D_mq8aq")
+mesh = SubResource("BoxMesh_51fql")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor2" unique_id=1480401223]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor2/StaticBody3D" unique_id=615709318]
+shape = SubResource("BoxShape3D_mq8aq")
+
+[node name="Sketchfab_Scene" parent="." unique_id=764742717 instance=ExtResource("3_10v3s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.74607325, 0.6096058, -8.3454075)
+
+[node name="Sketchfab_Scene" parent="Sketchfab_Scene" unique_id=563609799 instance=ExtResource("4_cptob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38537073, -0.6783087, 3.2009864)
+
+[node name="Object_5" parent="Sketchfab_Scene/Sketchfab_Scene/Sketchfab_model/root/GLTF_SceneRootNode/_1/Plane001_0" parent_id_path=PackedInt32Array(563609799, 1220686165) index="0" unique_id=1012922880]
+transform = Transform3D(1.0000004, 0, 0, 0, 1.0000004, 0, 0, 0, 1.0000004, 9.726906, -260.35938, -33.593933)
+
+[node name="wall north" type="MeshInstance3D" parent="." unique_id=136150263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0589962, 4.7309246, 11.164656)
+material_override = SubResource("StandardMaterial3D_51fql")
+mesh = SubResource("BoxMesh_mq8aq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall north" unique_id=498347713]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall north/StaticBody3D" unique_id=794673913]
+shape = SubResource("BoxShape3D_51fql")
+
+[node name="wall south" type="MeshInstance3D" parent="." unique_id=804174833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.022541046, 4.9559336, -10.904608)
+material_override = SubResource("StandardMaterial3D_kfvix")
+mesh = SubResource("BoxMesh_mq8aq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall south" unique_id=503407418]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall south/StaticBody3D" unique_id=728115886]
+shape = SubResource("BoxShape3D_kfvix")
+
+[node name="player" parent="." unique_id=939128792 instance=ExtResource("5_b2yaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9702206, 1.8253975, -4.301703)
+
+[editable path="Sketchfab_Scene/Sketchfab_Scene"]
