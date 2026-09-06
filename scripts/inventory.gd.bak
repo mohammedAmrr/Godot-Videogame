@@ -4,7 +4,7 @@ signal inventory_changed
 signal slot_selected(slot_index: int) # hotbar slot selected
 signal backpack_slot_selected(slot_index: int) # backpack slot selected
 
-var selected_slot := 0 # hotbar selected index
+var selected_slot_index := 0
 var selected_backpack_index := 0
 
 class Slot:
@@ -62,7 +62,6 @@ func add_item(item: ItemData, amount: int = 1) -> bool:
 	return false
 
 func drop_item(index: int, from_hotbar: bool = true) -> ItemData:
-	var slot: Slot
 	if from_hotbar:
 		if index < 0 or index >= HOTBAR_SIZE:
 			return null
@@ -84,11 +83,11 @@ func drop_item(index: int, from_hotbar: bool = true) -> ItemData:
 	inventory_changed.emit()
 	return item_to_drop
 
-func select_slot(index: int) -> void:
-	selected_slot = clamp(index, 0, HOTBAR_SIZE - 1)
-	slot_selected.emit(selected_slot)
+func select_hotbar_slot(index: int):
+	selected_slot_index = clamp(index, 0, HOTBAR_SIZE - 1)
+	slot_selected.emit(selected_slot_index)
 
-func select_backpack_slot(index: int) -> void:
+func select_backpack_slot(index: int):
 	selected_backpack_index = clamp(index, 0, BACKPACK_SIZE - 1)
 	backpack_slot_selected.emit(selected_backpack_index)
 
@@ -122,3 +121,5 @@ func swap_slots(from_hotbar: bool, from_index: int, to_hotbar: bool, to_index: i
 	inventory_changed.emit()
 	# Emit selection signals if needed?
 	return true
+
+# test comment to force change

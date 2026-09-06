@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://backpackpanel01"]
-[ext_resource type="PackedScene" path="res://scenes/inventory_slot.tscn" id="1"]
-[ext_resource type="Script" path="res://scripts/backpack_panel.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://inventory_slot" path="res://scenes/inventory_slot.tscn" id="1"]
+[ext_resource type="Script" uid="uid://backpack_panel_script" path="res://scripts/backpack_panel.gd" id="2"]
 
 [node name="BackpackPanel" type="CanvasLayer"]
 	script = ExtResource("2")
@@ -14,3 +14,5 @@
 		margin_top = 100.0
 		margin_right = 100.0
 		margin_bottom = 100.0
+    [/node]
+[/node]
