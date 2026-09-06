@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+var cutscene = false
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const SENS = 0.005
@@ -21,6 +21,8 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func  _unhandled_input(event: InputEvent) -> void:
+	if cutscene:
+		return
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENS)
 		cam.rotate_x(-event.relative.y * SENS)
@@ -72,6 +74,8 @@ func drop_item():
 			item_instance.apply_central_impulse(-cam.global_transform.basis.z * 2.0)
 
 func _physics_process(delta: float) -> void:
+	if cutscene:
+		return
 	if Input.is_action_pressed("sprint"):
 		speed = SPRINT_SPEED
 	else:

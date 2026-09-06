@@ -7,6 +7,7 @@ func _ready() -> void:
 	add_to_group("interactable")
 
 func collect():
-	if item_data:
-		Inventory.add_item(item_data)
-	queue_free()
+	if Inventory.add_item(item_data):
+		call_deferred("queue_free")
+	else:
+		pass
