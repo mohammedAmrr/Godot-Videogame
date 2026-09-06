@@ -13,49 +13,28 @@ class Slot:
 		count = c
 
 const HOTBAR_SIZE := 4
-const BACKPACK_SIZE := 16
 var hotbar: Array[Slot]
-var backpack: Array[Slot]
 var selected_slot: int = 0
 
 func _init() -> void:
-	hotbar.resize(HOTBAR_SIZE)
-	backpack.resize(BACKPACK_SIZE)
 	for i in HOTBAR_SIZE:
-		hotbar[i] = Slot.new()
-	for i in BACKPACK_SIZE:
-		backpack[i] = Slot.new()
+		hotbar.append(Slot.new())
 
 func add_item(item: ItemData, amount: int = 1) -> bool:
-	# Try to stack first in hotbar
+	# Try to stack first
 	for slot in hotbar:
 		if slot.item == item:
 			slot.count += amount
 			inventory_changed.emit()
 			return true
-	# Then in backpack
-	for slot in backpack:
-		if slot.item == item:
-			slot.count += amount
-			inventory_changed.emit()
-			return true
 
-	# Try to find empty slot in hotbar
+	# Try to find empty slot
 	for i in HOTBAR_SIZE:
 		if hotbar[i].item == null:
 			hotbar[i].item = item
 			hotbar[i].count = amount
 			inventory_changed.emit()
-			if i < HOTBAR_SIZE:  # hotbar slot
-				slot_selected.emit(i)
-			return true
-	# Then in backpack
-	for i in BACKPACK_SIZE:
-		if backpack[i].item == null:
-			backpack[i].item = item
-			backpack[i].count = amount
-			inventory_changed.emit()
-			# No slot_selected for backpack
+			slot_selected.emit(i)
 			return true
 	return false
 

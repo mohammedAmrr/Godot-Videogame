@@ -5,8 +5,6 @@ extends RigidBody3D
 
 func _ready() -> void:
 	add_to_group("interactable")
-	if item_data == null:
-		item_data = preload("res://resources/keys/golden_key.tres")
 
 func collect():
 	if Inventory.add_item(item_data):

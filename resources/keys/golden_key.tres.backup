@@ -8,5 +8,4 @@
 script = ExtResource("3_f36hk")
 item_name = "golden_key"
 mesh_scene = ExtResource("2_0t8gx")
-scale = Vector3(0.175, 0.175, 0.175)
 metadata/_custom_type_script = "uid://c5ic4b5v6bh7u"

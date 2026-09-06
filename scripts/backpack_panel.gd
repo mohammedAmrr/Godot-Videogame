@@ -1,0 +1,34 @@
+extends Node
+
+func _ready() -> void:
+    self.hide()
+    _create_slots()
+    _update_slots()
+
+func _create_slots() -> void:
+    var container = self.get_node("SlotsContainer")
+    var slot_scene = preload("res://scenes/inventory_slot.tscn")
+    for i in 16:
+        var slot_instance = slot_scene.instantiate()
+        container.add_child(slot_instance)
+
+func _update_slots() -> void:
+    var container = self.get_node("SlotsContainer")
+    for i in container.get_child_count():
+        var slot_btn = container.get_child(i).get_node("slot") as TextureButton
+        var label = container.get_child(i).get_node("CountLabel") as Label
+        if i < Inventory.backpack.size():
+            var data = Inventory.backpack[i]
+            if slot_btn:
+                slot_btn.texture_normal = data.icon if data.icon != null else null
+            if label:
+                if data.count > 1:
+                    label.text = str(data.count)
+                    label.show()
+                else:
+                    label.hide()
+        else:
+            if slot_btn:
+                slot_btn.texture_normal = null
+            if label:
+                label.hide()

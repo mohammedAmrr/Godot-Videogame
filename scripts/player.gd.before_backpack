@@ -13,15 +13,11 @@ var tbob = 0.0
 @onready var cam = $head/Camera3D
 @onready var interaction_ray = $head/Camera3D/InteractionRay
 @onready var grab_position = $head/Camera3D/GrabPosition
-#const BACKPACK_PANEL_SCENE = preload("res://ui/BackpackPanel.tscn")
-var backpack_panel_instance : Node
-var speed
 
+var speed
 var grabbed_object: RigidBody3D = null
 
 func _ready() -> void:
-	#backpack_panel_instance = BACKPACK_PANEL_SCENE.instantiate()
-	get_tree().root.add_child(backpack_panel_instance)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func  _unhandled_input(event: InputEvent) -> void:
@@ -62,13 +58,6 @@ func  _unhandled_input(event: InputEvent) -> void:
 		elif Inventory.selected_slot != -1:
 			drop_item()
 
-	if event is InputEventKey and event.keycode == KEY_B and event.pressed:
-		if backpack_panel_instance:
-			backpack_panel_instance.visible = not backpack_panel_instance.visible
-			if backpack_panel_instance.visible:
-				var backpack_script = backpack_panel_instance.get_script()
-				if backpack_script:
-					backpack_script._update_slots()
 func grab_object(object: RigidBody3D):
 	grabbed_object = object
 	grabbed_object.freeze = true
@@ -83,15 +72,16 @@ func throw_object():
 	grabbed_object = null
 
 func drop_item():
-	var item_data = Inventory.drop_item(Inventory.selected_slot)
-	if item_data:
-		var item_instance = item_data.mesh_scene.instantiate()
-		if item_instance is Node3D:
-			item_instance.scale = item_data.scale
-		get_parent().add_child(item_instance)
-		item_instance.global_position = cam.global_position + (-cam.global_transform.basis.z * 1.5)
-		if item_instance is RigidBody3D:
-			item_instance.apply_central_impulse(-cam.global_transform.basis.z * 2.0)
+	func drop_item():
+		var item_data = Inventory.drop_item(Inventory.selected_slot)
+		if item_data:
+			var item_instance = item_data.mesh_scene.instantiate()
+			if item_instance is Node3D:
+				item_instance.scale = item_data.scale
+			get_parent().add_child(item_instance)
+			item_instance.global_position = cam.global_position + (-cam.global_transform.basis.z * 1.5)
+			if item_instance is RigidBody3D:
+				item_instance.apply_central_impulse(-cam.global_transform.basis.z * 2.0)
 
 func _physics_process(delta: float) -> void:
 	if cutscene:
