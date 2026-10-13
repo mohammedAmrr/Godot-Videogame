@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cgcbag75vxq08" path="res://textures/walls/TilesTerracottaBeigeSquareStacked001_COL_1K.jpg" id="3_xj3pl"]
 [ext_resource type="PackedScene" uid="uid://brxtka7pwihax" path="res://3D models/furniture/victorian_bed.glb" id="4_4ip1t"]
 [ext_resource type="PackedScene" uid="uid://crsyqc2ot5xbi" path="res://scenes/player.tscn" id="5_din1b"]
+[ext_resource type="Texture2D" uid="uid://c8gxragv6vy62" path="res://textures/Tiles078_1K-JPG/Tiles078_1K-JPG_Color.jpg" id="5_rjnrb"]
 [ext_resource type="PackedScene" uid="uid://3y4v7iihkajq" path="res://3D models/furniture/antique_clock.glb" id="6_ryywa"]
 [ext_resource type="PackedScene" uid="uid://x68t2dw2x6lh" path="res://3D models/furniture/coat_hanger.glb" id="7_rjnrb"]
 [ext_resource type="PackedScene" uid="uid://k8itxvt58k4y" path="res://3D models/furniture/gramaphone.glb" id="8_7hiji"]
@@ -37,10 +38,9 @@ albedo_texture = ExtResource("3_xj3pl")
 albedo_texture_force_srgb = true
 uv1_scale = Vector3(11.63, 7.89, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51fql"]
-albedo_texture = ExtResource("3_xj3pl")
-albedo_texture_force_srgb = true
-uv1_scale = Vector3(12.565, 4.43, 6.41)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7hiji"]
+albedo_color = Color(1, 0.68235296, 0.47058824, 1)
+albedo_texture = ExtResource("5_rjnrb")
 
 [sub_resource type="BoxMesh" id="BoxMesh_mq8aq"]
 size = Vector3(22, 10, 0.3)
@@ -48,10 +48,17 @@ size = Vector3(22, 10, 0.3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_51fql"]
 size = Vector3(22, 10, 0.3)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kfvix"]
-albedo_texture = ExtResource("3_xj3pl")
-albedo_texture_force_srgb = true
-uv1_scale = Vector3(17.4, 7.68, 8.31)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jr5cr"]
+albedo_color = Color(1, 0.68235296, 0.47058824, 1)
+albedo_texture = ExtResource("5_rjnrb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsgcb"]
+albedo_color = Color(1, 0.6822403, 0.47027642, 1)
+albedo_texture = ExtResource("5_rjnrb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lq60f"]
+albedo_color = Color(0.6740345, 0.33644223, 1.4439225e-06, 1)
+albedo_texture = ExtResource("5_rjnrb")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kfvix"]
 size = Vector3(22, 10, 0.3)
@@ -95,7 +102,7 @@ transform = Transform3D(1.385, 0, 0, 0, 1.385, 0, 0, 0, 1.385, 5.591559, 0.00525
 
 [node name="wall north" type="MeshInstance3D" parent="." unique_id=136150263]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0589962, 4.7309246, 11.164656)
-material_override = SubResource("StandardMaterial3D_51fql")
+material_override = SubResource("StandardMaterial3D_7hiji")
 mesh = SubResource("BoxMesh_mq8aq")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wall north" unique_id=498347713]
@@ -105,7 +112,7 @@ shape = SubResource("BoxShape3D_51fql")
 
 [node name="wall west" type="MeshInstance3D" parent="." unique_id=1131491340]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.835247, 4.7309246, 0.08036041)
-material_override = SubResource("StandardMaterial3D_51fql")
+material_override = SubResource("StandardMaterial3D_jr5cr")
 mesh = SubResource("BoxMesh_mq8aq")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wall west" unique_id=749535341]
@@ -115,7 +122,7 @@ shape = SubResource("BoxShape3D_51fql")
 
 [node name="wall east" type="MeshInstance3D" parent="." unique_id=36210593]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.656748, 4.7309246, 0.08036041)
-material_override = SubResource("StandardMaterial3D_51fql")
+material_override = SubResource("StandardMaterial3D_tsgcb")
 mesh = SubResource("BoxMesh_mq8aq")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wall east" unique_id=870398730]
@@ -125,7 +132,7 @@ shape = SubResource("BoxShape3D_51fql")
 
 [node name="wall south" type="MeshInstance3D" parent="." unique_id=804174833]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.022541046, 4.9559336, -10.904608)
-material_override = SubResource("StandardMaterial3D_kfvix")
+material_override = SubResource("StandardMaterial3D_lq60f")
 mesh = SubResource("BoxMesh_mq8aq")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wall south" unique_id=503407418]
@@ -154,10 +161,10 @@ transform = Transform3D(2.285, 0, 0, 0, 2.285, 0, 0, 0, 2.285, 8.106842, 1.41545
 [node name="fan" parent="." unique_id=1218311644 instance=ExtResource("11_lq60f")]
 transform = Transform3D(0.005, 0, 0, 0, 0.005, 0, 0, 0, 0.005, 0, 8.882008, 0)
 
-[node name="Skeleton3D" parent="fan/Sketchfab_model/Fan_fbx/Object_2/RootNode/Armature_001/Object_5" parent_id_path=PackedInt32Array(1218311644, 397102284) index="0" unique_id=673754981]
+[node name="Skeleton3D" parent="fan/Sketchfab_model/Fan_fbx/Object_2/RootNode/Armature_001/Object_5" parent_id_path=PackedInt32Array(1218311644, 522219308) index="0" unique_id=2145691867]
 bones/3/rotation = Quaternion(0.68015045, 0.19337882, -0.19337894, -0.6801504)
 
-[node name="AnimationPlayer" parent="fan" index="1" unique_id=1425300056]
+[node name="AnimationPlayer" parent="fan" index="1" unique_id=737305898]
 autoplay = &"Armature_001|Spin"
 
 [editable path="carpet"]
