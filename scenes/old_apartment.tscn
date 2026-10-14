@@ -1,20 +1,19 @@
 [gd_scene format=3 uid="uid://qqjtt0amy4w8"]
 
 [ext_resource type="PackedScene" uid="uid://b227gv7j12i04" path="res://3D models/furniture/carpet.glb" id="1_jvm50"]
-[ext_resource type="Texture2D" uid="uid://dx8rco2diuw2u" path="res://textures/floor/TerrazzoSlab018_ROUGHNESS_1K_METALNESS.png" id="2_rsrx2"]
+[ext_resource type="Material" uid="uid://b38ybscqo63pr" path="res://textures/Tiles078_1K-JPG/Tiles078_1K-JPG.tres" id="2_lq60f"]
 [ext_resource type="Texture2D" uid="uid://cciitqtow8j1x" path="res://textures/marble/Poliigon_TerrazzoTilePolished_4818_BaseColor.jpg" id="3_tsgcb"]
 [ext_resource type="PackedScene" uid="uid://brxtka7pwihax" path="res://3D models/furniture/victorian_bed.glb" id="4_4ip1t"]
 [ext_resource type="Texture2D" uid="uid://dywvpu2nssel1" path="res://textures/marble/Poliigon_TerrazzoTilePolished_4818_Metallic.jpg" id="4_lq60f"]
 [ext_resource type="Texture2D" uid="uid://ci60t7ymyk7yv" path="res://textures/marble/Poliigon_TerrazzoTilePolished_4818_Normal.png" id="5_7pift"]
 [ext_resource type="PackedScene" uid="uid://crsyqc2ot5xbi" path="res://scenes/player.tscn" id="5_din1b"]
-[ext_resource type="Texture2D" uid="uid://c8gxragv6vy62" path="res://textures/Tiles078_1K-JPG/Tiles078_1K-JPG_Color.jpg" id="5_rjnrb"]
-[ext_resource type="Texture2D" uid="uid://cvvm1wuvnyp3v" path="res://textures/marble/Poliigon_TerrazzoTilePolished_4818_Roughness.jpg" id="6_7n2e5"]
 [ext_resource type="PackedScene" uid="uid://3y4v7iihkajq" path="res://3D models/furniture/antique_clock.glb" id="6_ryywa"]
 [ext_resource type="PackedScene" uid="uid://x68t2dw2x6lh" path="res://3D models/furniture/coat_hanger.glb" id="7_rjnrb"]
 [ext_resource type="PackedScene" uid="uid://k8itxvt58k4y" path="res://3D models/furniture/gramaphone.glb" id="8_7hiji"]
 [ext_resource type="PackedScene" uid="uid://ddb4todxq7fii" path="res://3D models/furniture/mahogany_table.glb" id="9_jr5cr"]
 [ext_resource type="PackedScene" uid="uid://b5xq7502rwqkw" path="res://3D models/furniture/radio.glb" id="10_tsgcb"]
 [ext_resource type="PackedScene" uid="uid://ksaf1sbs7blp" path="res://3D models/furniture/simple_ceiling_fan.glb" id="11_lq60f"]
+[ext_resource type="PackedScene" uid="uid://cln2rkequn31b" path="res://3D models/furniture/storage_b_from_fps_creator_classic.glb" id="14_jr5cr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jvm50"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -27,20 +26,22 @@ sky_material = SubResource("ProceduralSkyMaterial_jvm50")
 background_mode = 2
 sky = SubResource("Sky_rsrx2")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fi5v2"]
-albedo_texture = ExtResource("2_rsrx2")
-
 [sub_resource type="BoxMesh" id="BoxMesh_tsgcb"]
 size = Vector3(20.410034, 0.001, 22)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gbwpr"]
+load_path = "res://.godot/imported/Poliigon_TerrazzoTilePolished_4818_Roughness.jpg-f683f4e3acd234f6e209f4b71ec3b342.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbwpr"]
 albedo_texture = ExtResource("3_tsgcb")
 metallic = 1.0
+metallic_specular = 0.65
 metallic_texture = ExtResource("4_lq60f")
-roughness_texture = ExtResource("6_7n2e5")
+roughness_texture = SubResource("CompressedTexture2D_gbwpr")
 normal_enabled = true
+normal_scale = 16.0
 normal_texture = ExtResource("5_7pift")
-uv1_scale = Vector3(2.785, 2.785, 2.785)
+uv1_scale = Vector3(2.97, 2.97, 2.97)
 
 [sub_resource type="BoxMesh" id="BoxMesh_51fql"]
 size = Vector3(22.79956, 0.001, 22)
@@ -48,14 +49,8 @@ size = Vector3(22.79956, 0.001, 22)
 [sub_resource type="BoxShape3D" id="BoxShape3D_mq8aq"]
 size = Vector3(22, 0.3, 22)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7hiji"]
-albedo_texture = ExtResource("5_rjnrb")
-
 [sub_resource type="BoxMesh" id="BoxMesh_7hiji"]
 size = Vector3(17.562988, 10, 0.3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jr5cr"]
-albedo_texture = ExtResource("5_rjnrb")
 
 [sub_resource type="BoxMesh" id="BoxMesh_jr5cr"]
 size = Vector3(22, 10, 0.3)
@@ -63,14 +58,8 @@ size = Vector3(22, 10, 0.3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_51fql"]
 size = Vector3(22, 10, 0.3)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tsgcb"]
-albedo_texture = ExtResource("5_rjnrb")
-
 [sub_resource type="BoxMesh" id="BoxMesh_mq8aq"]
 size = Vector3(22, 10, 0.3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lq60f"]
-albedo_texture = ExtResource("5_rjnrb")
 
 [sub_resource type="BoxMesh" id="BoxMesh_rjnrb"]
 size = Vector3(17.482422, 10, 0.3)
@@ -94,8 +83,8 @@ transform = Transform3D(3.19, 0, 0, 0, 3.19, 0, 0, 0, 3.19, 0, 0.1271832, 0)
 transform = Transform3D(1.0000005, 0, 0, 0, 1.0000005, 0, 0, 0, 1.0000005, 0, 0, 0)
 
 [node name="ceiling" type="MeshInstance3D" parent="." unique_id=458139261]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3685455, 9.432694, -0.021761417)
-material_override = SubResource("StandardMaterial3D_fi5v2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3761342, 4.9604177, -0.013235211)
+material_override = ExtResource("2_lq60f")
 mesh = SubResource("BoxMesh_tsgcb")
 
 [node name="floor2" type="MeshInstance3D" parent="." unique_id=1390205187]
@@ -113,13 +102,13 @@ shape = SubResource("BoxShape3D_mq8aq")
 transform = Transform3D(1.3849999, 0, 0, 0, 1.3849999, 0, 0, 0, 1.3849999, 0.3617382, 0.0052555203, -8.46722)
 
 [node name="wall north" type="MeshInstance3D" parent="." unique_id=136150263]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.277502, 4.7309246, 11.164656)
-material_override = SubResource("StandardMaterial3D_7hiji")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.277502, 4.7309246, 8.345207)
+material_override = ExtResource("2_lq60f")
 mesh = SubResource("BoxMesh_7hiji")
 
 [node name="wall west" type="MeshInstance3D" parent="." unique_id=1131491340]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.835247, 4.7309246, 0.08036041)
-material_override = SubResource("StandardMaterial3D_jr5cr")
+material_override = ExtResource("2_lq60f")
 mesh = SubResource("BoxMesh_jr5cr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wall west" unique_id=749535341]
@@ -129,7 +118,7 @@ shape = SubResource("BoxShape3D_51fql")
 
 [node name="wall east" type="MeshInstance3D" parent="." unique_id=36210593]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.361501, 4.7309246, 0.08036041)
-material_override = SubResource("StandardMaterial3D_tsgcb")
+material_override = ExtResource("2_lq60f")
 mesh = SubResource("BoxMesh_mq8aq")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wall east" unique_id=870398730]
@@ -139,7 +128,7 @@ shape = SubResource("BoxShape3D_51fql")
 
 [node name="wall south" type="MeshInstance3D" parent="." unique_id=804174833]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.236248, 4.9559336, -10.904608)
-material_override = SubResource("StandardMaterial3D_lq60f")
+material_override = ExtResource("2_lq60f")
 mesh = SubResource("BoxMesh_rjnrb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wall south" unique_id=1071336228]
@@ -151,7 +140,7 @@ shape = SubResource("ConvexPolygonShape3D_rjnrb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9702206, 1.8253975, -4.301703)
 
 [node name="clock" parent="." unique_id=1401331988 instance=ExtResource("6_ryywa")]
-transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 10.560202, 4.539548, 0.06885195)
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 10.560202, 3.3260603, 0.06885195)
 
 [node name="coat_hanger" parent="." unique_id=255354232 instance=ExtResource("7_rjnrb")]
 transform = Transform3D(0.012, 0, 0, 0, 0.012, 0, 0, 0, 0.012, -3.1938734, 0, -9.564133)
@@ -166,13 +155,20 @@ transform = Transform3D(0.21, 0, 0, 0, 0.21, 0, 0, 0, 0.21, 8.958412, 0.01377975
 transform = Transform3D(2.285, 0, 0, 0, 2.285, 0, 0, 0, 2.285, 8.106842, 1.415454, -9.172799)
 
 [node name="fan" parent="." unique_id=1218311644 instance=ExtResource("11_lq60f")]
-transform = Transform3D(0.005, 0, 0, 0, 0.005, 0, 0, 0, 0.005, 0, 8.882008, 0)
+transform = Transform3D(0.004, 0, 0, 0, 0.004, 0, 0, 0, 0.004, 0, 4.254985, 0)
+metadata/_edit_group_ = true
 
 [node name="Skeleton3D" parent="fan/Sketchfab_model/Fan_fbx/Object_2/RootNode/Armature_001/Object_5" parent_id_path=PackedInt32Array(1218311644, 522219308) index="0" unique_id=2145691867]
 bones/3/rotation = Quaternion(0.68015045, 0.19337882, -0.19337894, -0.6801504)
 
 [node name="AnimationPlayer" parent="fan" index="1" unique_id=737305898]
 autoplay = &"Armature_001|Spin"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=950533490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1329243, 3.6082602, -9.538659)
+
+[node name="Sketchfab_Scene" parent="." unique_id=246530117 instance=ExtResource("14_jr5cr")]
+transform = Transform3D(-1.05125885e-07, 0, 2.405, 0, 2.405, 0, -2.405, 0, -1.05125885e-07, -4.6922283, 0.2544862, -2.1070287)
 
 [editable path="carpet"]
 [editable path="fan"]
